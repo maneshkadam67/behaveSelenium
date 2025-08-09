@@ -1,0 +1,29 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.11-browsers  # Comes with Python + Chrome + ChromeDriver pre-installed
+
+    steps:
+      - checkout  # Pull your repo code
+
+
+      # Install dependencies
+      - run:
+          name: Install Python dependencies
+          command: |
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+
+      # Run Pytest tests
+      - run:
+          name: Run behave tests
+          command: |
+            pip install behave && behave
+
+workflows:
+  version: 2
+  test_workflow:
+    jobs:
+      - build
