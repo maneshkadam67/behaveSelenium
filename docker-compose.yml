@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  pytest:
+    image: pytest-requests:latest
+    container_name: behave-runner
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: >
+      behave features --tags=sanity
