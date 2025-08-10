@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-  pytest:
-    image: pytest-requests:latest
+  behave:
+    image: behave-selenium:latest
     container_name: behave-runner
     build:
       context: .
